@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Completo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="border shadow p-4 rounded bg-white"> <!-- CONTENEDOR CON BORDES Y SOMBRA -->
+      <h2 class="mb-4 text-center">Formulario de Registro</h2>
+      <form id="formulario">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Nombre:</label>
+            <input type="text" class="form-control" id="nombre">
+          </div>
+          <div class="form-group col-md-4">
+            <label>Apellido:</label>
+            <input type="text" class="form-control" id="apellido">
+          </div>
+          <div class="form-group col-md-4">
+            <label>Edad:</label>
+            <input type="number" class="form-control" id="edad">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Email:</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="fecha">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Comentario:</label>
+          <textarea class="form-control" id="comentario" rows="3"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nivel de Estudio:</label>
+            <select class="form-control" id="nivel">
+              <option>-- Selecciona un nivel --</option>
+              <option>Primaria</option>
+              <option>Bachillerato</option>
+              <option>Universitario</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Color Favorito:</label>
+            <select class="form-control" id="color">
+              <option>-- Selecciona un color --</option>
+              <option>Rojo</option>
+              <option>Azul</option>
+              <option>Verde</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Género:</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="genero" id="masculino" value="Masculino">
+            <label class="form-check-label" for="masculino">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="genero" id="femenino" value="Femenino">
+            <label class="form-check-label" for="femenino">Femenino</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Intereses:</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="deportes" value="Deportes">
+            <label class="form-check-label" for="deportes">Deportes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="musica" value="Música">
+            <label class="form-check-label" for="musica">Música</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="lectura" value="Lectura">
+            <label class="form-check-label" for="lectura">Lectura</label>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" onclick="mostrarValores()">Mostrar Valores</button>
+        </div>
+      </form>
+
+      <div class="mt-4 p-3 bg-light border rounded">
+        <ul id="resultado" class="list-unstyled">
+          <li><strong>Nombre:</strong></li>
+          <li><strong>Apellido:</strong></li>
+          <li><strong>Email:</strong></li>
+          <li><strong>Edad:</strong></li>
+          <li><strong>Fecha de Nacimiento:</strong></li>
+          <li><strong>Comentario:</strong></li>
+          <li><strong>Nivel de Estudio:</strong></li>
+          <li><strong>Color Favorito:</strong></li>
+          <li><strong>Género:</strong></li>
+          <li><strong>Intereses:</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function mostrarValores() {
+      const nombre = document.getElementById("nombre").value;
+      const apellido = document.getElementById("apellido").value;
+      const email = document.getElementById("email").value;
+      const edad = document.getElementById("edad").value;
+      const fecha = document.getElementById("fecha").value;
+      const comentario = document.getElementById("comentario").value;
+      const nivel = document.getElementById("nivel").value;
+      const color = document.getElementById("color").value;
+      const genero = document.querySelector('input[name="genero"]:checked');
+      const intereses = [];
+      if (document.getElementById("deportes").checked) intereses.push("Deportes");
+      if (document.getElementById("musica").checked) intereses.push("Música");
+      if (document.getElementById("lectura").checked) intereses.push("Lectura");
+
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `
+        <li><strong>Nombre:</strong> ${nombre}</li>
+        <li><strong>Apellido:</strong> ${apellido}</li>
+        <li><strong>Email:</strong> ${email}</li>
+        <li><strong>Edad:</strong> ${edad}</li>
+        <li><strong>Fecha de Nacimiento:</strong> ${fecha}</li>
+        <li><strong>Comentario:</strong> ${comentario}</li>
+        <li><strong>Nivel de Estudio:</strong> ${nivel}</li>
+        <li><strong>Color Favorito:</strong> ${color}</li>
+        <li><strong>Género:</strong> ${genero ? genero.value : 'No seleccionado'}</li>
+        <li><strong>Intereses:</strong> ${intereses.length > 0 ? intereses.join(", ") : "Ninguno"}</li>
+      `;
+    }
+  </script>
+</body>
+</html>
